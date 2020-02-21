@@ -1,0 +1,7 @@
+.background-weather {
+  background: linear-gradient(180deg, #6abeca 0%, rgba(58, 98, 104, 0.57) 100%),
+    url("../../img/sunny-weather.jpeg");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}

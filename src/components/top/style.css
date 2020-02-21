@@ -1,0 +1,44 @@
+.top-container {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  background-color: #c2c6ca;
+  height: 100%;
+  width: 100%;
+  font-family: Oxygen, sans-serif;
+  justify-content: center;
+}
+
+.title {
+  font-size: 22px;
+  padding-top: 20px;
+}
+
+.weather-container {
+  display: grid;
+  text-align: center;
+}
+
+.inner-container {
+  display: flex;
+  /* grid-template-columns: 1fr 1fr;
+  justify-content: center; */
+}
+
+.current-weather {
+  padding-top: 26px;
+  padding-left: 18px;
+  font-size: 35px;
+}
+
+.inner-container.img {
+  width: 140%;
+}
+
+.btn-select-location {
+  margin-bottom: 10px;
+}
+
+.divButton {
+  display: grid;
+  grid-gap: 10px;
+}
