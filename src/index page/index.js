@@ -1,16 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import "./index page/css/style.css";
+import "./css/style.css";
 import axios from "axios";
+import TopSection from "./components/top/index";
+import BottomSection from "./components/bottom/index";
 
-import WeatherAlert from "./weather_alert/Alert";
-import Forecast from "./forecast/Forecast";
-
-import TopSection from "./index page/components/top/index";
-import BottomSection from "./index page/components/bottom/index";
-import StartPage from "./index page";
-
-export default class App extends React.Component {
+export default class StartPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,34 +60,39 @@ export default class App extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        <Router>
-          <div className="menuDiv">
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/index page">Home</Link>
-                </li>
-                <li>
-                  <Link to="/forecast">Forecast</Link>
-                </li>
-                <li>
-                  <Link to="/weather-alert">Weather alert</Link>
-                </li>
-              </ul>
-            </nav>
-
-            <Switch>
-              <Route
-                exact
-                path="/index page"
-                component={props => <StartPage {...props} />}
+      <div className="app-container">
+        <div className="main-container">
+          {isLoading && <h3>Loading weather...</h3>}
+          {!isLoading && (
+            <div className="top-section">
+              <TopSection
+                cityName={cityName}
+                temperature={temperature}
+                weather_descriptions={weather_descriptions}
+                weather_icons={weather_icons}
+                onSelectCity={this.onSelectCity}
               />
-              <Route path="/forecast" component={() => <Forecast />} />
-              <Route path="/weather-alert" component={() => <WeatherAlert />} />
-            </Switch>
+              <div className="divButton">
+                {/* <label htmlFor="location-name">Location Name</label> */}
+                <input
+                  id="location-name"
+                  type="text"
+                  placeholder="City Name"
+                  onBlur={this.onCityNameChange.bind(this)}
+                />
+                <button
+                  className="btn btn-select-location"
+                  onClick={this.onSelectCity.bind(this)}
+                >
+                  Select
+                </button>
+              </div>
+            </div>
+          )}
+          <div className="bottom-section">
+            <BottomSection />
           </div>
-        </Router>
+        </div>
       </div>
     );
   }
