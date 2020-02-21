@@ -54,3 +54,8 @@ body,
   display: grid;
   grid-template-columns: 2fr 2fr;
 } */
+
+.menuDiv {
+  background-color: green;
+  text-align: center;
+}
