@@ -41,4 +41,7 @@
 .divButton {
   display: grid;
   grid-gap: 10px;
+  justify-content: center;
+  padding-top: 10px;
+  background-color: #c2c6ca;
 }

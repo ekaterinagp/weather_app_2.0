@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import SunImg from "../../img/sun.png";
+// import SunImg from "../../img/sun.png";
 
 export default class Weather extends React.Component {
   constructor(props) {
