@@ -88,14 +88,8 @@ export default class App extends React.Component {
                 path="/"
                 component={props => <h1>This is the index page</h1>}
               />
-              <Route
-                path="/forecast"
-                component={props => <Forecast {...props} />}
-              />
-              <Route
-                path="/alert"
-                component={props => <WeatherAlert {...props} />}
-              />
+              <Route path="/forecast" component={() => <Forecast />} />
+              <Route path="/weather-alert" component={() => <WeatherAlert />} />
             </Switch>
           </div>
         </Router>

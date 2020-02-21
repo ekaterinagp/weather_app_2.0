@@ -59,3 +59,17 @@ body,
   background-color: green;
   text-align: center;
 }
+
+ul {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  height: 70px;
+}
+
+li a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
