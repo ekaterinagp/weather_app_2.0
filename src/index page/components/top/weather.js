@@ -3,10 +3,6 @@ import "./style.css";
 // import SunImg from "../../img/sun.png";
 
 export default class Weather extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
       cityName,
@@ -21,9 +17,11 @@ export default class Weather extends React.Component {
         <div className="header">{cityName}</div>
         <div className="inner-container">
           <div className="image">
-            <img
-              src={`https://www.weatherbit.io/static/img/icons/${weather_icons}.png`}
-            ></img>
+            {weather_icons && (
+              <img
+                src={`https://www.weatherbit.io/static/img/icons/${weather_icons}.png`}
+              ></img>
+            )}
           </div>
           <div className="current-weather">{temperature}°</div>
         </div>

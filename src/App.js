@@ -6,18 +6,30 @@ import axios from "axios";
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
 
-import TopSection from "./index page/components/top/index";
-import BottomSection from "./index page/components/bottom/index";
+// import TopSection from "./index page/components/top/index";
+// import BottomSection from "./index page/components/bottom/index";
 import StartPage from "./index page";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName: "Saint Petersburg",
-      isLoading: true
+      cityName: "Copenhagen",
+      isLoading: true,
+      temperature: undefined,
+      weather_descriptions: undefined,
+      weather_icons: null
     };
   }
+
+  setStateFromChild = childData => {
+    this.setState(childData);
+  };
+
+  // onCityChange = cityName => {
+  //   console.log(cityName);
+  //   this.setState({ cityName: cityName });
+  // };
 
   updateWeather() {
     const weather_key = "45fad47371d541f289461204ee6a8069";
@@ -29,6 +41,7 @@ export default class App extends React.Component {
         return res.data;
       })
       .then(data => {
+        console.log({ data });
         this.setState({
           isLoading: false,
           temperature: data.data[0].temp,
@@ -45,25 +58,25 @@ export default class App extends React.Component {
     this.updateWeather();
   }
 
-  onCityNameChange(e) {
-    this.setState({ cityName: e.target.value });
-    console.log(e.target.value);
-  }
+  // onCityNameChange(e) {
+  //   this.setState({ cityName: e.target.value });
+  //   console.log(e.target.value);
+  // }
 
-  onSelectCity() {
-    const { cityName } = this.state;
-    this.updateWeather();
-    console.log("inselect", this.state);
-  }
+  // onSelectCity() {
+  //   const { cityName } = this.state;
+  //   this.updateWeather();
+  //   console.log("inselect", this.state);
+  // }
 
   render() {
-    const {
-      isLoading,
-      cityName,
-      temperature,
-      weather_descriptions,
-      weather_icons
-    } = this.state;
+    // const {
+    //   isLoading,
+    //   cityName,
+    //   temperature,
+    //   weather_descriptions,
+    //   weather_icons
+    // } = this.state;
 
     return (
       <div>
@@ -72,7 +85,7 @@ export default class App extends React.Component {
             <nav>
               <ul>
                 <li>
-                  <Link to="/index page">Home</Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
                   <Link to="/forecast">Forecast</Link>
@@ -85,12 +98,23 @@ export default class App extends React.Component {
 
             <Switch>
               <Route
-                exact
-                path="/index page"
-                component={props => <StartPage {...props} />}
+                path="/forecast"
+                component={props => <Forecast {...props} />}
               />
-              <Route path="/forecast" component={() => <Forecast />} />
-              <Route path="/weather-alert" component={() => <WeatherAlert />} />
+              <Route
+                path="/weather-alert"
+                component={props => <WeatherAlert {...props} />}
+              />
+              <Route
+                exact
+                path="/"
+                component={props => (
+                  <StartPage
+                    {...this.state}
+                    setParentState={this.setStateFromChild}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </Router>
