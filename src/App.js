@@ -20,6 +20,7 @@ export default class App extends React.Component {
       weather_descriptions: undefined,
       weather_icons: null
     };
+    this.updateWeather = this.updateWeather.bind(this);
   }
 
   setStateFromChild = childData => {
@@ -32,9 +33,13 @@ export default class App extends React.Component {
   // };
 
   updateWeather() {
+    console.log("we are in update in parent");
+    console.log(this.state);
+
     const weather_key = "45fad47371d541f289461204ee6a8069";
     const { cityName } = this.state;
     const URL = `https://api.weatherbit.io/v2.0/current?city=${cityName}&key=${weather_key}`;
+
     axios
       .get(URL)
       .then(res => {
@@ -42,6 +47,7 @@ export default class App extends React.Component {
       })
       .then(data => {
         console.log({ data });
+        console.log(this.state);
         this.setState({
           isLoading: false,
           temperature: data.data[0].temp,
@@ -112,6 +118,7 @@ export default class App extends React.Component {
                   <StartPage
                     {...this.state}
                     setParentState={this.setStateFromChild}
+                    setUpdateFromChild={this.updateWeather}
                   />
                 )}
               />
