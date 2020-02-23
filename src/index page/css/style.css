@@ -21,11 +21,11 @@ body,
 
 .main-container {
   min-width: 900px;
-  height: 600px;
-  display: grid;
+  /* height: 1000px; */
+  /* display: grid; */
   border: 1px solid #999;
   border-radius: 3px;
-  grid-template-rows: 2fr 2fr;
+  /* grid-template-rows: 2fr 2fr; */
 }
 
 .btn {

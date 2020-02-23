@@ -2,7 +2,6 @@ import React from "react";
 import "./css/style.css";
 // import axios from "axios";
 import TopSection from "./components/top/index";
-import BottomSection from "./components/bottom/index";
 
 export default class StartPage extends React.Component {
   onCityNameChange(e) {
@@ -49,9 +48,6 @@ export default class StartPage extends React.Component {
             </div>
           </div>
           {/* // )} */}
-          <div className="bottom-section">
-            <BottomSection />
-          </div>
         </div>
       </div>
     );
