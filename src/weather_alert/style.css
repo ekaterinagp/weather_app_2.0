@@ -1,0 +1,14 @@
+.alertDesc {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+}
+
+.singleAlert {
+  text-align: left;
+  padding: 2em;
+  width: 60%;
+}
+
+.alertTitle {
+  text-align: center;
+}

@@ -16,7 +16,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName: "Copenhagen",
+      cityName: "Tallinn",
       isLoading: true,
       temperature: undefined,
       weather_descriptions: undefined,
@@ -117,7 +117,7 @@ export default class App extends React.Component {
             />
             <Route
               path="/weather-alert"
-              component={props => <WeatherAlert {...props} />}
+              component={state => <WeatherAlert {...this.state} />}
             />
             <Route
               exact
