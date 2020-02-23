@@ -63,12 +63,23 @@ export default class Forecast extends React.Component {
     console.log(this.state);
     return (
       <div>
-        {/* <h1>Forecast Page {this.state.days[1].weather_description} </h1> */}
-        <div>
-          {this.state &&
-            this.state.days &&
-            this.state.days.length &&
-            this.state.days.map(day => <li>{day.max_temp}</li>)}
+        <div className="forecastTitle">
+          <h1>Forecast Page {this.state.cityName} </h1>
+        </div>
+        <div className="daysForecast">
+          {this.state.days.map((day, i) => (
+            <div className="eachDay" key={i}>
+              <h2>{day.date}</h2>
+              <h3>{day.temperature}</h3>
+              <img
+                alt="bla"
+                src={`https://www.weatherbit.io/static/img/icons/${day.weather_icon}.png`}
+              ></img>
+              <li>{day.weather_description}</li>
+              <li>Highest temperature: {day.max_temp}</li>
+              <li>Lowest temperature: {day.low_temp}</li>
+            </div>
+          ))}
         </div>
       </div>
     );

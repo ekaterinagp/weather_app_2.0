@@ -109,29 +109,28 @@ export default class App extends React.Component {
                 </li>
               </ul>
             </nav>
-
-            <Switch>
-              <Route
-                path="/forecast"
-                component={props => <Forecast {...this.state} />}
-              />
-              <Route
-                path="/weather-alert"
-                component={props => <WeatherAlert {...props} />}
-              />
-              <Route
-                exact
-                path="/"
-                component={props => (
-                  <StartPage
-                    {...this.state}
-                    setParentState={this.setStateFromChild}
-                    setUpdateFromChild={this.updateWeather}
-                  />
-                )}
-              />
-            </Switch>
           </div>
+          <Switch>
+            <Route
+              path="/forecast"
+              component={props => <Forecast {...this.state} />}
+            />
+            <Route
+              path="/weather-alert"
+              component={props => <WeatherAlert {...props} />}
+            />
+            <Route
+              exact
+              path="/"
+              component={props => (
+                <StartPage
+                  {...this.state}
+                  setParentState={this.setStateFromChild}
+                  setUpdateFromChild={this.updateWeather}
+                />
+              )}
+            />
+          </Switch>
         </Router>
       </div>
     );

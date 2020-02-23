@@ -1,0 +1,16 @@
+.forecastTitle {
+  text-align: center;
+  padding: 10px;
+}
+
+.daysForecast {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  grid-gap: 2em;
+}
+
+.eachDay {
+  border: black 1px solid;
+  margin: 20px;
+}
