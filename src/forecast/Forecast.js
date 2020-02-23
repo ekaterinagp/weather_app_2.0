@@ -69,7 +69,7 @@ export default class Forecast extends React.Component {
         <div className="daysForecast">
           {this.state.days.map((day, i) => (
             <div className="eachDay" key={i}>
-              <h2>{day.date}</h2>
+              <h2>{i === 0 ? "today" : i === 1 ? "tomorrow" : day.date}</h2>
               <h3>{day.temperature}</h3>
               <img
                 alt="bla"
