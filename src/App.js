@@ -1,7 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./index page/css/style.css";
 import axios from "axios";
+// import NavLink from "./index page/components/Nav";
 
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
@@ -90,14 +92,20 @@ export default class App extends React.Component {
           <div className="menuDiv">
             <nav>
               <ul>
-                <li>
-                  <Link to="/">Home</Link>
+                <li className="liMenu">
+                  <NavLink exact to="/" activeClassName="selectedLink">
+                    Home
+                  </NavLink>
                 </li>
-                <li>
-                  <Link to="/forecast">Forecast</Link>
+                <li className="liMenu">
+                  <NavLink to="/forecast" activeClassName="selectedLink">
+                    Forecast
+                  </NavLink>
                 </li>
-                <li>
-                  <Link to="/weather-alert">Weather alert</Link>
+                <li className="liMenu">
+                  <NavLink to="/weather-alert" activeClassName="selectedLink">
+                    Weather alert
+                  </NavLink>
                 </li>
               </ul>
             </nav>
@@ -105,7 +113,7 @@ export default class App extends React.Component {
             <Switch>
               <Route
                 path="/forecast"
-                component={props => <Forecast {...props} />}
+                component={props => <Forecast {...this.state} />}
               />
               <Route
                 path="/weather-alert"

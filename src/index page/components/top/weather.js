@@ -7,7 +7,6 @@ export default class Weather extends React.Component {
     const {
       cityName,
       temperature,
-
       weather_descriptions,
       weather_icons
     } = this.props;
@@ -19,6 +18,7 @@ export default class Weather extends React.Component {
           <div className="image">
             {weather_icons && (
               <img
+                alt="bla"
                 src={`https://www.weatherbit.io/static/img/icons/${weather_icons}.png`}
               ></img>
             )}
