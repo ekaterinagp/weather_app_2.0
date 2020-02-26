@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./index page/css/style.css";
 import axios from "axios";
+import { FaHome } from "react-icons/fa";
+import { WiDaySnowWind } from "react-icons/wi";
+import { GoAlert } from "react-icons/go";
+
 // import NavLink from "./index page/components/Nav";
 
 import WeatherAlert from "./weather_alert/Alert";
@@ -22,19 +26,14 @@ export default class App extends React.Component {
       weather_descriptions: undefined,
       weather_icons: null
     };
-    this.updateWeather = this.updateWeather.bind(this);
+    // this.updateWeather = this.updateWeather.bind(this);
   }
 
   setStateFromChild = childData => {
     this.setState(childData);
   };
 
-  // onCityChange = cityName => {
-  //   console.log(cityName);
-  //   this.setState({ cityName: cityName });
-  // };
-
-  updateWeather() {
+  updateWeather = () => {
     console.log("we are in update in parent");
     console.log(this.state);
 
@@ -60,7 +59,9 @@ export default class App extends React.Component {
       .catch(err => {
         if (err) console.error("Cannot fetch Weather Data from API, ", err);
       });
-  }
+  };
+
+  //add redirect button
 
   componentDidMount() {
     this.updateWeather();
@@ -94,17 +95,17 @@ export default class App extends React.Component {
               <ul>
                 <li className="liMenu">
                   <NavLink exact to="/" activeClassName="selectedLink">
-                    Home
+                    Home <FaHome />
                   </NavLink>
                 </li>
                 <li className="liMenu">
                   <NavLink to="/forecast" activeClassName="selectedLink">
-                    Forecast
+                    Forecast <WiDaySnowWind />
                   </NavLink>
                 </li>
                 <li className="liMenu">
                   <NavLink to="/weather-alert" activeClassName="selectedLink">
-                    Weather alert
+                    Weather alert <GoAlert />
                   </NavLink>
                 </li>
               </ul>
@@ -113,7 +114,7 @@ export default class App extends React.Component {
           <Switch>
             <Route
               path="/forecast"
-              component={props => <Forecast {...this.state} />}
+              component={state => <Forecast {...this.state} />}
             />
             <Route
               path="/weather-alert"

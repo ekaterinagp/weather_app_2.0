@@ -1,7 +1,8 @@
 import React from "react";
 import "./css/style.css";
 // import axios from "axios";
-import TopSection from "./components/top/index";
+import TopSection from "./CurrentWeather";
+import { FaLocationArrow } from "react-icons/fa";
 
 export default class StartPage extends React.Component {
   onCityNameChange(e) {
@@ -39,6 +40,7 @@ export default class StartPage extends React.Component {
                 placeholder="City Name"
                 onBlur={this.onCityNameChange.bind(this)}
               />
+              <FaLocationArrow />
               <button
                 className="btn btn-select-location"
                 onClick={this.onSelectCity.bind(this)}
