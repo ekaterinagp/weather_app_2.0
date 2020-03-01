@@ -10,6 +10,7 @@ import SearchCity from "./components/SearchCity";
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
 import StartPage from "./index page/StartPage";
+// import Time from "react-time";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -21,12 +22,15 @@ export default class App extends React.Component {
       weather_descriptions: undefined,
       weather_icons: null,
       suggestions: [],
-      resultsHidden: true
+      resultsHidden: true,
+      now: new Date()
     };
   }
 
   componentDidMount() {
     this.updateWeather();
+
+    console.log(this.state.now);
   }
 
   updateWeather = () => {

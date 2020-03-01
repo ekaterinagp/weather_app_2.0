@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import { FaLocationArrow } from "react-icons/fa";
 import axios from "axios";
-// import { debounce } from "throttle-debounce";
+import Moment from "react-moment";
 
 class Debouncer {
   running = false;
@@ -61,7 +61,9 @@ export default class SearchCity extends React.Component {
     this.props.setUpdateFromChild();
     console.log("in select", this.state);
   };
+
   render() {
+    let { dateToFormat } = "1976-04-19T12:59";
     return (
       <div className="divButton">
         <div>
@@ -83,6 +85,9 @@ export default class SearchCity extends React.Component {
           </button>
         </div>
         <h1 className="title">Soft Weather</h1>
+        <div>
+          <Moment>{dateToFormat}</Moment>
+        </div>
       </div>
     );
   }
