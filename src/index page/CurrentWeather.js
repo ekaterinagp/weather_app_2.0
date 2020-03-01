@@ -16,19 +16,19 @@ export default class CurrentWeather extends React.Component {
       weather_icons
     } = this.props;
     return (
-      <div>
+      <div className="currentWeather">
         <h2 className="header">{cityName}</h2>
-        <div className="inner-container">
-          <div className="image">
-            {weather_icons && (
-              <img
-                alt="bla"
-                src={`https://www.weatherbit.io/static/img/icons/${weather_icons}.png`}
-              ></img>
-            )}
-          </div>
-          <p className="current-weather">{temperature}°</p>
+        {/* <div className="inner-container"> */}
+        <div className="image">
+          {weather_icons && (
+            <img
+              alt="bla"
+              src={`https://www.weatherbit.io/static/img/icons/${weather_icons}.png`}
+            ></img>
+          )}
         </div>
+        <p className="current-weather">{temperature}°</p>
+        {/* </div> */}
         <p className="footer">{weather_descriptions}</p>
       </div>
     );

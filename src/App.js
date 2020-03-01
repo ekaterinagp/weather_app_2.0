@@ -7,20 +7,15 @@ import { FaHome } from "react-icons/fa";
 import { WiDaySnowWind } from "react-icons/wi";
 import { GoAlert } from "react-icons/go";
 import SearchCity from "./components/SearchCity";
-// import NavLink from "./index page/components/Nav";
-
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
-
-// import TopSection from "./index page/components/top/index";
-// import BottomSection from "./index page/components/bottom/index";
 import StartPage from "./index page/StartPage";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName: "Tallinn",
+      cityName: "Trondheim",
       isLoading: true,
       temperature: undefined,
       weather_descriptions: undefined,
@@ -28,68 +23,11 @@ export default class App extends React.Component {
       suggestions: [],
       resultsHidden: true
     };
-    // this.updateWeather = this.updateWeather.bind(this);
   }
 
-  setStateFromChild = childData => {
-    this.setState(childData);
-  };
-
-  handelAutoComplete = dataFromChild => {
-    console.log("passing to parents", dataFromChild);
-    let newSuggestions = [];
-    dataFromChild.forEach(one => {
-      if (one.address.city) {
-        newSuggestions.push(one);
-      }
-    });
-    console.log("newArraycheck", newSuggestions);
-    this.setState({
-      suggestions: newSuggestions
-    });
-    this.setState({
-      resultsHidden: false
-    });
-    console.log("checking suggestions", this.state.suggestions);
-    if (this.state.suggestions) {
-      this.Results();
-    }
-  };
-
-  toggle() {
-    this.setState({ resultsHidden: !this.state.resultsHidden });
-  }
-
-  onClickChoose = async e => {
-    console.log("target", e.currentTarget.dataset.id);
-    await this.setState({
-      cityName: e.currentTarget.dataset.id
-    });
-
-    console.log(this.state.cityName);
+  componentDidMount() {
     this.updateWeather();
-  };
-
-  Results = () => {
-    let resultClass = ["results"];
-    if (this.state.resultsHidden) {
-      resultClass.push("hide");
-    }
-    return (
-      <div className={resultClass.join(" ")} onClick={this.toggle.bind(this)}>
-        {this.state.suggestions.map((oneSuggestion, i) => (
-          <p
-            key={i}
-            onClick={this.onClickChoose}
-            data-id={oneSuggestion.address.city}
-          >
-            {oneSuggestion.address.city ? oneSuggestion.address.city : ""},{" "}
-            {oneSuggestion.address.city ? oneSuggestion.address.country : ""}
-          </p>
-        ))}
-      </div>
-    );
-  };
+  }
 
   updateWeather = () => {
     console.log("we are in update in parent");
@@ -119,9 +57,63 @@ export default class App extends React.Component {
       });
   };
 
-  componentDidMount() {
-    this.updateWeather();
+  toggle() {
+    this.setState({ resultsHidden: !this.state.resultsHidden });
   }
+
+  setStateFromChild = async childData => {
+    await this.setState(childData);
+    return;
+  };
+
+  onClickChoose = async e => {
+    console.log("target", e.currentTarget.dataset.id);
+    await this.setState({
+      cityName: e.currentTarget.dataset.id
+    });
+    console.log(this.state.cityName);
+    this.updateWeather();
+  };
+
+  handelAutoComplete = async dataFromChild => {
+    console.log("passing to parents", dataFromChild);
+    let newSuggestions = dataFromChild
+      .filter(city => city.address.city)
+      .filter(city => city.matchLevel === "city");
+    console.log("newArraycheck", newSuggestions);
+    await this.setState({
+      suggestions: newSuggestions
+    });
+    console.log("checking suggestions", this.state.suggestions);
+    if (this.state.suggestions.length) {
+      await this.setState({
+        resultsHidden: false
+      });
+      this.Results();
+    }
+  };
+
+  Results = () => {
+    let resultClass = ["results"];
+    if (this.state.resultsHidden) {
+      resultClass.push("hide");
+    }
+    return (
+      <div className={resultClass.join(" ")} onClick={this.toggle.bind(this)}>
+        {this.state.suggestions.map((oneSuggestion, i) => (
+          <p
+            key={i}
+            onClick={this.onClickChoose}
+            data-id={oneSuggestion.address.city}
+          >
+            {oneSuggestion.address.city ? oneSuggestion.address.city : ""},{" "}
+            {oneSuggestion.address.city ? oneSuggestion.address.country : ""},{" "}
+            {oneSuggestion.address.postalCode}
+          </p>
+        ))}
+      </div>
+    );
+  };
 
   render() {
     return (
@@ -142,17 +134,17 @@ export default class App extends React.Component {
                 <ul>
                   <li className="liMenu a">
                     <NavLink exact to="/" activeClassName="selectedLink">
-                      Home <FaHome />
+                      <FaHome /> Home
                     </NavLink>
                   </li>
                   <li className="liMenu b">
                     <NavLink to="/forecast" activeClassName="selectedLink">
-                      Forecast <WiDaySnowWind />
+                      <WiDaySnowWind /> Forecast
                     </NavLink>
                   </li>
                   <li className="liMenu c">
                     <NavLink to="/weather-alert" activeClassName="selectedLink">
-                      Weather alert <GoAlert />
+                      <GoAlert /> Weather alert
                     </NavLink>
                   </li>
                 </ul>

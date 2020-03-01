@@ -10,6 +10,11 @@ body,
   width: 100%;
   height: 100%;
 }
+h1,
+h2 {
+  color: #404040;
+  padding-top: 10px;
+}
 
 .app-container {
   /* padding-top: 100px; */
@@ -47,11 +52,19 @@ body,
 
 li a {
   text-decoration: none;
+  color: white;
+  font-size: 150%;
+}
+
+.menuDiv li {
+  list-style: none;
+  padding: 2em 0 2em 2em;
+  background-color: #215b21;
+  margin: 5px;
 }
 
 li {
   list-style: none;
-  padding: 2em 0 2em 2em;
 }
 
 /* li.liMenu > a.active {
@@ -115,7 +128,7 @@ li {
   margin-left: 45px;
   padding: 10px;
   padding-top: -200px;
-  width: 201px;
+  width: 409px;
   height: auto;
 }
 
@@ -137,5 +150,11 @@ li {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 3fr 5fr;
+  grid-template-columns: 2fr 5fr;
+}
+
+.currentWeather {
+  text-align: center;
+  height: 100%;
+  padding-right: 400px;
 }

@@ -8,14 +8,10 @@ export default class Forecast extends React.Component {
     this.state = {
       cityName: this.props.cityName,
       days: []
-      // temperature: undefined,
-      // weather_description: undefined,
-      // weather_icons: null
     };
-    this.fetchWeatherForecast = this.fetchWeatherForecast.bind(this);
   }
 
-  fetchWeatherForecast() {
+  fetchWeatherForecast = () => {
     const weather_key = "45fad47371d541f289461204ee6a8069";
     const { cityName } = this.state;
     const URL = `http://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=${weather_key}`;
@@ -53,7 +49,7 @@ export default class Forecast extends React.Component {
       .catch(err => {
         if (err) console.error("Cannot fetch Weather Data from API, ", err);
       });
-  }
+  };
 
   componentDidMount() {
     this.fetchWeatherForecast();

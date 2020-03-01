@@ -39,11 +39,12 @@
 
 input#location-name {
   margin: 10px;
-  width: 200px;
+  width: 408px;
   height: 40px;
   border-radius: 3px;
   border: none;
   padding-left: 10px;
+  font-size: 120%;
 }
 
 input#location-name::placeholder {
@@ -52,4 +53,5 @@ input#location-name::placeholder {
 
 .title {
   text-align: center;
+  padding-right: 400px;
 }
