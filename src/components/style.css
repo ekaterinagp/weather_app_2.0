@@ -1,0 +1,55 @@
+.btn-select-location {
+  margin-bottom: 10px;
+}
+
+.divButton {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  padding: 20px;
+  background-color: #c8e3c8;
+}
+
+.btn {
+  border: none;
+  background: #404040;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+}
+
+.btn:hover {
+  color: #404040 !important;
+  font-weight: 700 !important;
+  /* letter-spacing: 3px; */
+  background: none;
+  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+
+  transition: all 0.3s ease 0s;
+}
+
+.blabla {
+  background-color: red;
+  width: 2000px;
+  height: 200px;
+}
+
+input#location-name {
+  margin: 10px;
+  width: 200px;
+  height: 40px;
+  border-radius: 3px;
+  border: none;
+  padding-left: 10px;
+}
+
+input#location-name::placeholder {
+  padding-left: 5px;
+}
+
+.title {
+  text-align: center;
+}

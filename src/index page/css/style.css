@@ -12,8 +12,8 @@ body,
 }
 
 .app-container {
-  padding-top: 100px;
-  width: 100%;
+  /* padding-top: 100px; */
+  width: auto;
   height: 100%;
   display: grid;
   justify-content: center;
@@ -29,37 +29,15 @@ body,
   /* grid-template-rows: 2fr 2fr; */
 }
 
-.btn {
-  border: none;
-  background: #404040;
-  color: #ffffff !important;
-  font-weight: 100;
-  padding: 15px;
-  text-transform: uppercase;
-  border-radius: 6px;
-  display: inline-block;
-  transition: all 0.3s ease 0s;
-}
-
-.btn:hover {
-  color: #404040 !important;
-  font-weight: 700 !important;
-  /* letter-spacing: 3px; */
-  background: none;
-  box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-
-  transition: all 0.3s ease 0s;
-}
-
 /* .top-section {
   display: grid;
   grid-template-columns: 2fr 2fr;
 } */
 
-.menuDiv {
+/* .menuDiv {
   width: 200px;
   position: absolute;
-}
+} */
 
 /* ul {
   display: grid;
@@ -90,19 +68,20 @@ li {
 }
 
 .top-container {
-  display: grid;
+  /* display: grid;
   grid-template-rows: 1fr 2fr;
   background-color: #c2c6ca;
   height: 100%;
-  width: 100%;
+  width: 100%; */
   font-family: Oxygen, sans-serif;
   justify-content: center;
 }
 
-.title {
+/* .title {
   font-size: 22px;
-  padding-top: 20px;
-}
+  padding: 20px;
+  float: right;
+} */
 
 .weather-container {
   display: grid;
@@ -129,10 +108,34 @@ li {
   margin-bottom: 10px;
 }
 
-.divButton {
+.results {
+  background-color: white;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 45px;
+  padding: 10px;
+  padding-top: -200px;
+  width: 201px;
+  height: auto;
+}
+
+.hide {
+  display: none;
+}
+
+.results.hide {
+  display: none;
+}
+
+.results p {
+  padding: 2px;
+}
+
+.results p:hover {
+  color: red;
+}
+
+.wrapper {
   display: grid;
-  grid-gap: 10px;
-  justify-content: center;
-  padding-top: 10px;
-  background-color: #c2c6ca;
+  grid-template-columns: 3fr 5fr;
 }

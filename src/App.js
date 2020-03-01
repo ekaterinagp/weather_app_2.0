@@ -6,7 +6,7 @@ import axios from "axios";
 import { FaHome } from "react-icons/fa";
 import { WiDaySnowWind } from "react-icons/wi";
 import { GoAlert } from "react-icons/go";
-
+import SearchCity from "./components/SearchCity";
 // import NavLink from "./index page/components/Nav";
 
 import WeatherAlert from "./weather_alert/Alert";
@@ -14,7 +14,7 @@ import Forecast from "./forecast/Forecast";
 
 // import TopSection from "./index page/components/top/index";
 // import BottomSection from "./index page/components/bottom/index";
-import StartPage from "./index page";
+import StartPage from "./index page/StartPage";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,13 +24,71 @@ export default class App extends React.Component {
       isLoading: true,
       temperature: undefined,
       weather_descriptions: undefined,
-      weather_icons: null
+      weather_icons: null,
+      suggestions: [],
+      resultsHidden: true
     };
     // this.updateWeather = this.updateWeather.bind(this);
   }
 
   setStateFromChild = childData => {
     this.setState(childData);
+  };
+
+  handelAutoComplete = dataFromChild => {
+    console.log("passing to parents", dataFromChild);
+    let newSuggestions = [];
+    dataFromChild.forEach(one => {
+      if (one.address.city) {
+        newSuggestions.push(one);
+      }
+    });
+    console.log("newArraycheck", newSuggestions);
+    this.setState({
+      suggestions: newSuggestions
+    });
+    this.setState({
+      resultsHidden: false
+    });
+    console.log("checking suggestions", this.state.suggestions);
+    if (this.state.suggestions) {
+      this.Results();
+    }
+  };
+
+  toggle() {
+    this.setState({ resultsHidden: !this.state.resultsHidden });
+  }
+
+  onClickChoose = async e => {
+    console.log("target", e.currentTarget.dataset.id);
+    await this.setState({
+      cityName: e.currentTarget.dataset.id
+    });
+
+    console.log(this.state.cityName);
+    this.updateWeather();
+  };
+
+  Results = () => {
+    let resultClass = ["results"];
+    if (this.state.resultsHidden) {
+      resultClass.push("hide");
+    }
+    return (
+      <div className={resultClass.join(" ")} onClick={this.toggle.bind(this)}>
+        {this.state.suggestions.map((oneSuggestion, i) => (
+          <p
+            key={i}
+            onClick={this.onClickChoose}
+            data-id={oneSuggestion.address.city}
+          >
+            {oneSuggestion.address.city ? oneSuggestion.address.city : ""},{" "}
+            {oneSuggestion.address.city ? oneSuggestion.address.country : ""}
+          </p>
+        ))}
+      </div>
+    );
   };
 
   updateWeather = () => {
@@ -61,78 +119,62 @@ export default class App extends React.Component {
       });
   };
 
-  //add redirect button
-
   componentDidMount() {
     this.updateWeather();
   }
 
-  // onCityNameChange(e) {
-  //   this.setState({ cityName: e.target.value });
-  //   console.log(e.target.value);
-  // }
-
-  // onSelectCity() {
-  //   const { cityName } = this.state;
-  //   this.updateWeather();
-  //   console.log("inselect", this.state);
-  // }
-
   render() {
-    // const {
-    //   isLoading,
-    //   cityName,
-    //   temperature,
-    //   weather_descriptions,
-    //   weather_icons
-    // } = this.state;
-
     return (
       <div>
-        <Router>
-          <div className="menuDiv">
-            <nav>
-              <ul>
-                <li className="liMenu">
-                  <NavLink exact to="/" activeClassName="selectedLink">
-                    Home <FaHome />
-                  </NavLink>
-                </li>
-                <li className="liMenu">
-                  <NavLink to="/forecast" activeClassName="selectedLink">
-                    Forecast <WiDaySnowWind />
-                  </NavLink>
-                </li>
-                <li className="liMenu">
-                  <NavLink to="/weather-alert" activeClassName="selectedLink">
-                    Weather alert <GoAlert />
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <Switch>
-            <Route
-              path="/forecast"
-              component={state => <Forecast {...this.state} />}
-            />
-            <Route
-              path="/weather-alert"
-              component={state => <WeatherAlert {...this.state} />}
-            />
-            <Route
-              exact
-              path="/"
-              component={props => (
-                <StartPage
-                  {...this.state}
-                  setParentState={this.setStateFromChild}
-                  setUpdateFromChild={this.updateWeather}
-                />
-              )}
-            />
-          </Switch>
-        </Router>
+        <SearchCity
+          {...this.state}
+          setParentState={this.setStateFromChild}
+          setUpdateFromChild={this.updateWeather}
+          autoComplete={this.handelAutoComplete}
+        />
+
+        <this.Results />
+
+        <div className="wrapper">
+          <Router>
+            <div className="menuDiv">
+              <nav>
+                <ul>
+                  <li className="liMenu a">
+                    <NavLink exact to="/" activeClassName="selectedLink">
+                      Home <FaHome />
+                    </NavLink>
+                  </li>
+                  <li className="liMenu b">
+                    <NavLink to="/forecast" activeClassName="selectedLink">
+                      Forecast <WiDaySnowWind />
+                    </NavLink>
+                  </li>
+                  <li className="liMenu c">
+                    <NavLink to="/weather-alert" activeClassName="selectedLink">
+                      Weather alert <GoAlert />
+                    </NavLink>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <Switch>
+              <Route
+                path="/forecast"
+                component={state => <Forecast {...this.state} />}
+              />
+              <Route
+                path="/weather-alert"
+                component={state => <WeatherAlert {...this.state} />}
+              />
+              <Route
+                exact
+                path="/"
+                component={props => <StartPage {...this.state} />}
+              />
+            </Switch>
+          </Router>
+        </div>
       </div>
     );
   }
