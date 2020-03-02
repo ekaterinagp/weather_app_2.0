@@ -21,6 +21,12 @@ export default class App extends React.Component {
       temperature: undefined,
       weather_descriptions: undefined,
       weather_icons: null,
+      pres: null,
+      wind_spd: null,
+      wind_cdir_full: undefined,
+      uv: null,
+      sunset: undefined,
+      sunrise: undefined,
       suggestions: [],
       resultsHidden: true,
       now: new Date()
@@ -29,7 +35,6 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.updateWeather();
-
     console.log(this.state.now);
   }
 
@@ -53,7 +58,13 @@ export default class App extends React.Component {
           isLoading: false,
           temperature: data.data[0].temp,
           weather_descriptions: data.data[0].weather.description,
-          weather_icons: data.data[0].weather.icon
+          weather_icons: data.data[0].weather.icon,
+          pres: data.data[0].pres,
+          wind_spd: data.data[0].wind_spd,
+          wind_cdir_full: data.data[0].wind_cdir_full,
+          sunset: data.data[0].sunset,
+          sunrise: data.data[0].sunrise,
+          uv: data.data[0].uv
         });
       })
       .catch(err => {

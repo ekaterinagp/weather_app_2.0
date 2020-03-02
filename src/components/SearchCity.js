@@ -3,22 +3,7 @@ import "./style.css";
 import { FaLocationArrow } from "react-icons/fa";
 import axios from "axios";
 import Moment from "react-moment";
-
-class Debouncer {
-  running = false;
-  call = (timer, fn) => {
-    // console.log("debouncer called", timer);
-    if (this.running) {
-      // console.log("debouncer running, cancel");
-      return;
-    }
-    this.running = true;
-    setTimeout(() => {
-      fn();
-      this.running = false;
-    }, timer);
-  };
-}
+import Debouncer from "../components/debouncer";
 
 export default class SearchCity extends React.Component {
   debouncer = new Debouncer();
@@ -84,8 +69,9 @@ export default class SearchCity extends React.Component {
             Select
           </button>
         </div>
-        <h1 className="title">Soft Weather</h1>
-        <div>
+
+        <div className="divTitle">
+          <h1 className="title">Soft Weather</h1>
           <Moment>{dateToFormat}</Moment>
         </div>
       </div>

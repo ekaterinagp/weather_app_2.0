@@ -12,6 +12,12 @@ export default class StartPage extends React.Component {
           temperature={this.props.temperature}
           weather_descriptions={this.props.weather_descriptions}
           weather_icons={this.props.weather_icons}
+          pres={this.props.pres}
+          wind_spd={this.props.wind_spd}
+          wind_cdir_full={this.props.wind_cdir_full}
+          uv={this.props.uv}
+          sunset={this.props.sunset}
+          sunrise={this.props.sunrise}
           onSelectCity={this.onSelectCity}
         />
       </div>

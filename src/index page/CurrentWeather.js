@@ -13,7 +13,13 @@ export default class CurrentWeather extends React.Component {
       cityName,
       temperature,
       weather_descriptions,
-      weather_icons
+      weather_icons,
+      pres,
+      wind_spd,
+      wind_cdir_full,
+      uv,
+      sunset,
+      sunrise
     } = this.props;
     return (
       <div className="currentWeather">
@@ -30,6 +36,19 @@ export default class CurrentWeather extends React.Component {
         <p className="current-weather">{temperature}°</p>
         {/* </div> */}
         <p className="footer">{weather_descriptions}</p>
+        <div>
+          {" "}
+          <p> {pres} Pa</p>
+          <p> {uv} UV</p>
+          <p>
+            {" "}
+            {sunrise} sunrise {sunset} sunset
+          </p>
+          <p>
+            {" "}
+            Wind {wind_spd} {wind_cdir_full}{" "}
+          </p>
+        </div>
       </div>
     );
   }
