@@ -10,7 +10,6 @@ import SearchCity from "./components/SearchCity";
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
 import StartPage from "./index page/StartPage";
-// import Time from "react-time";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -29,7 +28,8 @@ export default class App extends React.Component {
       sunrise: undefined,
       suggestions: [],
       resultsHidden: true,
-      now: new Date()
+      now: new Date(),
+      dayTime: true
     };
   }
 
@@ -37,6 +37,20 @@ export default class App extends React.Component {
     this.updateWeather();
     console.log(this.state.now);
   }
+
+  getIfDayOrNight = () => {
+    let h = this.state.now.getHours();
+    let sunsetHours = parseInt(this.state.sunset);
+    if (h > sunsetHours) {
+      this.setState({
+        dayTime: false
+      });
+    } else {
+      this.setState({
+        dayTime: true
+      });
+    }
+  };
 
   updateWeather = () => {
     console.log("we are in update in parent");
@@ -54,6 +68,7 @@ export default class App extends React.Component {
       .then(data => {
         console.log({ data });
         console.log(this.state);
+
         this.setState({
           isLoading: false,
           temperature: data.data[0].temp,
@@ -66,6 +81,7 @@ export default class App extends React.Component {
           sunrise: data.data[0].sunrise,
           uv: data.data[0].uv
         });
+        this.getIfDayOrNight();
       })
       .catch(err => {
         if (err) console.error("Cannot fetch Weather Data from API, ", err);
@@ -142,7 +158,13 @@ export default class App extends React.Component {
 
         <this.Results />
 
-        <div className="wrapper">
+        <div
+          className="wrapper"
+          style={{
+            backgroundColor: this.state.dayTime === false ? "#272750" : "grey",
+            color: this.state.dayTime === false ? "white" : "#404040"
+          }}
+        >
           <Router>
             <div className="menuDiv">
               <nav>

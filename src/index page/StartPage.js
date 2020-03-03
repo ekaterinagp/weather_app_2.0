@@ -19,6 +19,7 @@ export default class StartPage extends React.Component {
           sunset={this.props.sunset}
           sunrise={this.props.sunrise}
           onSelectCity={this.onSelectCity}
+          dayTime={this.props.dayTime}
         />
       </div>
     );

@@ -59,12 +59,29 @@ export default class WeatherAlert extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1 className="alertTitle">ALERT! For {this.state.cityName}</h1>
+      <div
+        style={{
+          color: this.props.dayTime === false ? "white" : "#404040"
+        }}
+      >
+        <h1
+          style={{
+            color: this.props.dayTime === false ? "white" : "#404040"
+          }}
+          className="alertTitle"
+        >
+          ALERT! For {this.state.cityName}
+        </h1>
         <div className="alertDesc">
           {this.state.alerts.map((alert, i) => (
             <div className="singleAlert" key={i}>
-              <h1>{alert.title}</h1>
+              <h1
+                style={{
+                  color: this.props.dayTime === false ? "white" : "#404040"
+                }}
+              >
+                {alert.title}
+              </h1>
               <p>{alert.description}</p>
             </div>
           ))}

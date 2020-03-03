@@ -58,14 +58,30 @@ export default class Forecast extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <div>
+      <div
+        style={{
+          color: this.props.dayTime === false ? "white" : "#404040"
+        }}
+      >
         <div className="forecastTitle">
-          <h1>Forecast Page {this.state.cityName} </h1>
+          <h1
+            style={{
+              color: this.props.dayTime === false ? "white" : "#404040"
+            }}
+          >
+            Forecast Page {this.state.cityName}{" "}
+          </h1>
         </div>
         <div className="daysForecast">
           {this.state.days.map((day, i) => (
             <div className="eachDay" key={i}>
-              <h2>{i === 0 ? "today" : i === 1 ? "tomorrow" : day.date}</h2>
+              <h2
+                style={{
+                  color: this.props.dayTime === false ? "white" : "#404040"
+                }}
+              >
+                {i === 0 ? "today" : i === 1 ? "tomorrow" : day.date}
+              </h2>
               <h3>{day.temperature}</h3>
               <img
                 alt="bla"
