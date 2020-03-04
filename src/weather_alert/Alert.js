@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
 import axios from "axios";
-import Spinner from "../components/Spinner";
+// import Spinner from "../components/Spinner";
+import { FaUmbrellaBeach } from "react-icons/fa";
 
 export default class WeatherAlert extends React.Component {
   constructor(props) {
@@ -27,10 +28,8 @@ export default class WeatherAlert extends React.Component {
       })
       .then(data => {
         console.log({ data });
-        let gotAlerts = [];
-
-        data.alerts.forEach(alert => {
-          gotAlerts.push(alert);
+        let gotAlerts = data.alerts.map(alert => {
+          return alert;
         });
         if (this._isMounted) {
           if (gotAlerts.length) {
@@ -60,36 +59,22 @@ export default class WeatherAlert extends React.Component {
 
   render() {
     return (
-      <div
-        className="mainAlertDiv"
-        style={{
-          color: this.props.dayTime === false ? "white" : "#404040"
-        }}
-      >
-        <h1
-          style={{
-            color: this.props.dayTime === false ? "white" : "#404040"
-          }}
-          className="alertTitle"
-        >
-          ALERT! For {this.state.cityName}
-        </h1>
-        {this.props.isLoading ? (
-          <Spinner />
-        ) : (
+      <div className="mainAlertDiv">
+        <h1 className="alertTitle">{this.state.cityName}: weather alerts</h1>
+
+        {this.state.alerts.length ? (
           <div className="alertDesc">
             {this.state.alerts.map((alert, i) => (
               <div className="singleAlert" key={i}>
-                <h1
-                  style={{
-                    color: this.props.dayTime === false ? "white" : "#404040"
-                  }}
-                >
-                  {alert.title}
-                </h1>
+                <h1>{alert.title}</h1>
                 <p>{alert.description}</p>
               </div>
             ))}
+          </div>
+        ) : (
+          <div className="noAlerts">
+            {" "}
+            No weather alerts at the moment <FaUmbrellaBeach />
           </div>
         )}
       </div>

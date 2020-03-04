@@ -33,7 +33,8 @@ export default class App extends React.Component {
       suggestions: [],
       resultsHidden: true,
       now: new Date(),
-      dayTime: true
+      dayTime: true,
+      inputValue: "Trondheim"
     };
   }
 
@@ -45,7 +46,8 @@ export default class App extends React.Component {
   getIfDayOrNight = () => {
     let h = this.state.now.getHours();
     let sunsetHours = parseInt(this.state.sunset);
-    if (h > sunsetHours) {
+    let sunriseHours = parseInt(this.state.sunrise);
+    if (h > sunsetHours || h < sunriseHours) {
       this.setState({
         dayTime: false
       });
@@ -156,18 +158,6 @@ export default class App extends React.Component {
   };
 
   render() {
-    const styles = {
-      divNight: {
-        color: "white",
-        background:
-          "radial-gradient(circle, rgba(90,121,162,0.4853291658460259) 0%, rgba(49,49,124,0.7234244039412641) 40%, rgba(0,65,255,0.4433123591233369) 100%)"
-      },
-      divDay: {
-        color: "#404040"
-        // background:
-        //   "radial-gradient(circle, rgba(168,167,192,0.4853291658460259) 0%, rgba(195,204,186,0.7234244039412641) 40%, rgba(228,255,0,0.4433123591233369) 100%)"
-      }
-    };
     return (
       <div className="mainWrapper">
         <SearchCity
@@ -179,10 +169,7 @@ export default class App extends React.Component {
 
         <this.Results />
 
-        <div
-          className="wrapper"
-          style={this.state.dayTime === false ? styles.divNight : styles.divDay}
-        >
+        <div className="wrapper">
           <Router>
             <div className="menuDiv">
               <nav>

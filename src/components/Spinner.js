@@ -22,9 +22,9 @@ export default class Spinner extends React.Component {
       <div className="loading">
         <DotLoader
           css={override}
-          size={150}
+          size={200}
           //size={"150px"} this also works
-          color={"#123abc"}
+          color={"green"}
           loading={this.state.loading}
         />
       </div>

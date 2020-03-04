@@ -12,6 +12,8 @@ export default class Forecast extends React.Component {
     };
   }
 
+  _isMounted = false;
+
   fetchWeatherForecast = () => {
     const weather_key = "45fad47371d541f289461204ee6a8069";
     const { cityName } = this.state;
@@ -31,7 +33,7 @@ export default class Forecast extends React.Component {
         let allDays = data.data.map(day => {
           let newDay = {
             temperature: day.temp,
-            date: day.datetime,
+            date: this.convertDate(day.datetime),
             weather_description: day.weather.description,
             weather_icon: day.weather.icon,
             low_temp: day.low_temp,
@@ -40,37 +42,41 @@ export default class Forecast extends React.Component {
 
           return newDay;
         });
-        console.log(allDays);
-        this.setState({
-          days: allDays
-        });
-        console.log(this.state);
+        if (this._isMounted) {
+          this.setState({
+            days: allDays
+          });
+        }
+        // console.log(allDays);
+
+        // console.log(this.state);
       })
       .catch(err => {
         if (err) console.error("Cannot fetch Weather Data from API, ", err);
       });
   };
 
+  convertDate = date => {
+    let parts = date.split("-");
+    let mydate = new Date(parts[0], parts[1] - 1, parts[2]);
+    return mydate.toDateString();
+  };
+
   componentDidMount() {
+    this._isMounted = true;
     this.fetchWeatherForecast();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
     console.log(this.state);
     return (
-      <div
-        style={{
-          color: this.props.dayTime === false ? "white" : "#404040"
-        }}
-      >
+      <div>
         <div className="forecastTitle">
-          <h1
-            style={{
-              color: this.props.dayTime === false ? "white" : "#404040"
-            }}
-          >
-            Forecast Page {this.state.cityName}{" "}
-          </h1>
+          <h1> {this.state.cityName}: 16 days forecast </h1>
         </div>
         {this.props.isLoading ? (
           <Spinner />
@@ -78,13 +84,7 @@ export default class Forecast extends React.Component {
           <div className="daysForecast">
             {this.state.days.map((day, i) => (
               <div className="eachDay" key={i}>
-                <h2
-                  style={{
-                    color: this.props.dayTime === false ? "white" : "#404040"
-                  }}
-                >
-                  {i === 0 ? "today" : i === 1 ? "tomorrow" : day.date}
-                </h2>
+                <h2>{i === 0 ? "today" : i === 1 ? "tomorrow" : day.date}</h2>
                 <h3>{day.temperature}</h3>
                 <img
                   alt="bla"

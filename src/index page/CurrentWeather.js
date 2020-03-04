@@ -6,6 +6,19 @@ import { GiSunset } from "react-icons/gi";
 
 export default class CurrentWeather extends React.Component {
   render() {
+    const styles = {
+      divNight: {
+        // color: "white",
+        // background:
+        //   "linear-gradient(90deg, rgba(90,121,162,0.4853291658460259) 0%, rgba(49,49,124,0.7234244039412641) 40%, rgba(0,65,255,0.4433123591233369) 100%)"
+        backgroundColor: "#9b9bc3"
+      },
+      divDay: {
+        color: "#404040"
+        // background:
+        //   "radial-gradient(circle, rgba(168,167,192,0.4853291658460259) 0%, rgba(195,204,186,0.7234244039412641) 40%, rgba(228,255,0,0.4433123591233369) 100%)"
+      }
+    };
     const {
       cityName,
       temperature,
@@ -26,12 +39,15 @@ export default class CurrentWeather extends React.Component {
     console.log(this.props);
     return (
       <div className="currentWeather">
-        <div className="mainInfo">
+        <div
+          className="mainInfo"
+          style={dayTime === false ? styles.divNight : styles.divDay}
+        >
           <h2
             className="header"
-            style={{
-              color: dayTime === false ? "white" : "#404040"
-            }}
+            // style={{
+            //   color: dayTime === false ? "white" : "#404040"
+            // }}
           >
             {cityName}
           </h2>
@@ -49,7 +65,10 @@ export default class CurrentWeather extends React.Component {
           {/* </div> */}
           <p className="footer">{weather_descriptions}</p>
         </div>
-        <div className="additionalInfo">
+        <div
+          className="additionalInfo"
+          style={dayTime === false ? styles.divNight : styles.divDay}
+        >
           <div className="title">Pressure</div>
           <div className="value">{pres} Pa</div>
 

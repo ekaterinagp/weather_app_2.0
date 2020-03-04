@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { FaLocationArrow } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import Moment from "react-moment";
 import Debouncer from "../components/debouncer";
@@ -52,7 +52,9 @@ export default class SearchCity extends React.Component {
 
   onCityNameChange = e => {
     this.setState({ cityName: e.target.value });
+
     console.log(e.target.value);
+    // console.log(this.state.cityName);
   };
 
   onSelectCity = async () => {
@@ -67,14 +69,15 @@ export default class SearchCity extends React.Component {
       <div className="divButton">
         <div className="searchInput">
           {" "}
-          <FaLocationArrow />
+          <FaSearch />
           <input
             id="location-name"
             type="text"
             placeholder="City Name"
-            onBlur={this.onCityNameChange.bind(this)}
+            onChange={this.onCityNameChange.bind(this)}
             onKeyUp={this.setSearchTerm}
             autoComplete="off"
+            // textcontent={this.props.cityName}
           />
           <button
             className="btn btn-select-location"

@@ -14,22 +14,12 @@ body,
 }
 h1,
 h2 {
-  color: white;
+  /* color: white; */
   padding-top: 10px;
 }
 
 .header {
   font-size: 250%;
-}
-
-.app-container {
-  /* padding-top: 100px; */
-  /* width: auto;
-  height: 100%;
-  display: grid; */
-  height: 85vh;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .mainInfo {
@@ -216,7 +206,7 @@ li {
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 5fr;
-  width: 100vw;
+  /* width: 100vw; */
   height: 100%;
 }
 

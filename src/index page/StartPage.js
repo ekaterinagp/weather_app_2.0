@@ -28,6 +28,7 @@ export default class StartPage extends React.Component {
             vis={this.props.vis}
             onSelectCity={this.onSelectCity}
             dayTime={this.props.dayTime}
+            inputValue={this.props.inputValue}
           />
         )}
       </div>
