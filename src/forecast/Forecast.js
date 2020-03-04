@@ -28,9 +28,7 @@ export default class Forecast extends React.Component {
 
         // let allDays = data.data;
         // console.log(allDays);
-        let allDays = [];
-
-        data.data.forEach(day => {
+        let allDays = data.data.map(day => {
           let newDay = {
             temperature: day.temp,
             date: day.datetime,
@@ -39,9 +37,10 @@ export default class Forecast extends React.Component {
             low_temp: day.low_temp,
             max_temp: day.max_temp
           };
-          allDays.push(newDay);
-          console.log(allDays);
+
+          return newDay;
         });
+        console.log(allDays);
         this.setState({
           days: allDays
         });

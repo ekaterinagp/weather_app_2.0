@@ -61,6 +61,7 @@ export default class WeatherAlert extends React.Component {
   render() {
     return (
       <div
+        className="mainAlertDiv"
         style={{
           color: this.props.dayTime === false ? "white" : "#404040"
         }}

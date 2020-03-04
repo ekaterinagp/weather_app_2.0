@@ -1,16 +1,18 @@
 .alertDesc {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
+  padding: 10px;
+  /* display: grid; */
+  /* grid-template-columns: minmax(200px, 50%); */
+  background-color: #efefef;
 }
 
-.singleAlert {
+/* .singleAlert {
   text-align: left;
   padding: 2em;
   width: 60%;
-}
+} */
 
 .alertTitle {
-  text-align: center;
+  margin-bottom: 20px;
 }
 
 * {
@@ -19,4 +21,9 @@
   padding: 0;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.mainAlertDiv {
+  padding: 20px;
+  color: #404040;
 }

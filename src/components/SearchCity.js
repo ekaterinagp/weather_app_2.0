@@ -6,6 +6,21 @@ import Moment from "react-moment";
 import Debouncer from "../components/debouncer";
 
 export default class SearchCity extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { time: Date.now() };
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(
+      () => this.setState({ time: Date.now() }),
+      1000
+    );
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   debouncer = new Debouncer();
 
   setSearchTerm = e => {
@@ -48,10 +63,9 @@ export default class SearchCity extends React.Component {
   };
 
   render() {
-    let { dateToFormat } = "1976-04-19T12:59";
     return (
       <div className="divButton">
-        <div>
+        <div className="searchInput">
           {" "}
           <FaLocationArrow />
           <input
@@ -72,7 +86,7 @@ export default class SearchCity extends React.Component {
 
         <div className="divTitle">
           <h1 className="title">Soft Weather</h1>
-          <Moment>{dateToFormat}</Moment>
+          <Moment>{this.state.time}</Moment>
         </div>
       </div>
     );

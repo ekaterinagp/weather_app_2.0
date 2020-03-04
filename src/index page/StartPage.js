@@ -22,6 +22,10 @@ export default class StartPage extends React.Component {
             uv={this.props.uv}
             sunset={this.props.sunset}
             sunrise={this.props.sunrise}
+            rh={this.props.rh}
+            clouds={this.props.clouds}
+            app_temp={this.props.app_temp}
+            vis={this.props.vis}
             onSelectCity={this.onSelectCity}
             dayTime={this.props.dayTime}
           />

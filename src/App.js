@@ -26,6 +26,10 @@ export default class App extends React.Component {
       uv: null,
       sunset: undefined,
       sunrise: undefined,
+      rh: null,
+      clouds: undefined,
+      app_temp: undefined,
+      vis: undefined,
       suggestions: [],
       resultsHidden: true,
       now: new Date(),
@@ -79,8 +83,13 @@ export default class App extends React.Component {
           wind_cdir_full: data.data[0].wind_cdir_full,
           sunset: data.data[0].sunset,
           sunrise: data.data[0].sunrise,
-          uv: data.data[0].uv
+          uv: data.data[0].uv,
+          rh: data.data[0].rh,
+          clouds: data.data[0].clouds,
+          vis: data.data[0].vis,
+          app_temp: data.data[0].app_temp
         });
+        console.log(this.state.rh);
         this.getIfDayOrNight();
       })
       .catch(err => {
@@ -160,7 +169,7 @@ export default class App extends React.Component {
       }
     };
     return (
-      <div>
+      <div className="mainWrapper">
         <SearchCity
           {...this.state}
           setParentState={this.setStateFromChild}
