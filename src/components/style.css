@@ -7,7 +7,7 @@
   grid-template-columns: 2fr 5fr;
   padding: 20px;
   /* background-color: #c8e3c8; */
-  background-color: #66a2d6;
+  background-color: #66d693;
   color: white;
   height: 15vh;
   /* background: linear-gradient(90deg, #37dbd0, #4d5057); */
@@ -15,7 +15,7 @@
 
 .btn {
   border: none;
-  background: #888585;
+  background: #46454e;
   color: #ffffff !important;
   font-weight: 100;
   padding: 10px;

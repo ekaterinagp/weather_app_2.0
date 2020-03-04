@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  withRouter
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./index page/css/style.css";
 import axios from "axios";
@@ -15,7 +10,6 @@ import SearchCity from "./components/SearchCity";
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
 import StartPage from "./index page/StartPage";
-import Spinner from "./components/Spinner";
 
 export default class App extends React.Component {
   constructor(props) {

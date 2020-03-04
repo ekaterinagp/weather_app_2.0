@@ -83,8 +83,8 @@ li {
 } */
 
 .selectedLink {
-  color: red;
-  font-size: bold;
+  color: #46454e;
+  font-size: 180%;
 }
 
 .top-container {
