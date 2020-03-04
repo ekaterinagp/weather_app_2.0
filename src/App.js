@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter
+} from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./index page/css/style.css";
 import axios from "axios";
@@ -10,6 +15,7 @@ import SearchCity from "./components/SearchCity";
 import WeatherAlert from "./weather_alert/Alert";
 import Forecast from "./forecast/Forecast";
 import StartPage from "./index page/StartPage";
+import Spinner from "./components/Spinner";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -147,6 +153,18 @@ export default class App extends React.Component {
   };
 
   render() {
+    const styles = {
+      divNight: {
+        color: "white",
+        background:
+          "radial-gradient(circle, rgba(90,121,162,0.4853291658460259) 0%, rgba(49,49,124,0.7234244039412641) 40%, rgba(0,65,255,0.4433123591233369) 100%)"
+      },
+      divDay: {
+        color: "#404040"
+        // background:
+        //   "radial-gradient(circle, rgba(168,167,192,0.4853291658460259) 0%, rgba(195,204,186,0.7234244039412641) 40%, rgba(228,255,0,0.4433123591233369) 100%)"
+      }
+    };
     return (
       <div>
         <SearchCity
@@ -160,10 +178,7 @@ export default class App extends React.Component {
 
         <div
           className="wrapper"
-          style={{
-            backgroundColor: this.state.dayTime === false ? "#272750" : "grey",
-            color: this.state.dayTime === false ? "white" : "#404040"
-          }}
+          style={this.state.dayTime === false ? styles.divNight : styles.divDay}
         >
           <Router>
             <div className="menuDiv">
@@ -199,7 +214,9 @@ export default class App extends React.Component {
               <Route
                 exact
                 path="/"
-                component={props => <StartPage {...this.state} />}
+                component={props => (
+                  <StartPage {...this.state} isLoading={this.state.isLoading} />
+                )}
               />
             </Switch>
           </Router>

@@ -14,6 +14,7 @@
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-spinners": "^0.8.0",
     "react-time": "^4.3.0",
     "throttle-debounce": "^2.1.0"
   },

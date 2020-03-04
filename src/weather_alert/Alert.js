@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
 export default class WeatherAlert extends React.Component {
   constructor(props) {
@@ -72,20 +73,24 @@ export default class WeatherAlert extends React.Component {
         >
           ALERT! For {this.state.cityName}
         </h1>
-        <div className="alertDesc">
-          {this.state.alerts.map((alert, i) => (
-            <div className="singleAlert" key={i}>
-              <h1
-                style={{
-                  color: this.props.dayTime === false ? "white" : "#404040"
-                }}
-              >
-                {alert.title}
-              </h1>
-              <p>{alert.description}</p>
-            </div>
-          ))}
-        </div>
+        {this.props.isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="alertDesc">
+            {this.state.alerts.map((alert, i) => (
+              <div className="singleAlert" key={i}>
+                <h1
+                  style={{
+                    color: this.props.dayTime === false ? "white" : "#404040"
+                  }}
+                >
+                  {alert.title}
+                </h1>
+                <p>{alert.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }

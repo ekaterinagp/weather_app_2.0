@@ -14,7 +14,7 @@ body,
 }
 h1,
 h2 {
-  color: #404040;
+  color: white;
   padding-top: 10px;
 }
 
@@ -23,6 +23,7 @@ h2 {
   width: auto;
   height: 100%;
   display: grid;
+  height: 85vh;
   justify-content: center;
   align-items: center;
 }
@@ -61,8 +62,12 @@ li a {
 .menuDiv li {
   list-style: none;
   padding: 2em 0 2em 2em;
-  background-color: #215b21;
+  background-color: #66d693;
+  /* background-color: #215b21; */
   margin: 5px;
+}
+.menuDiv {
+  background-color: #66d693;
 }
 
 li {
@@ -153,6 +158,8 @@ li {
 .wrapper {
   display: grid;
   grid-template-columns: 2fr 5fr;
+  width: 100vw;
+  height: 80vh;
 }
 
 .currentWeather {
