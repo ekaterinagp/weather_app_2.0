@@ -17,7 +17,7 @@ export default class Forecast extends React.Component {
   fetchWeatherForecast = () => {
     const weather_key = "45fad47371d541f289461204ee6a8069";
     const { cityName } = this.state;
-    const URL = `http://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=${weather_key}`;
+    const URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=${weather_key}`;
 
     axios
       .get(URL)

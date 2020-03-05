@@ -81,7 +81,7 @@ export default class App extends React.Component {
           weather_descriptions: data.data[0].weather.description,
           weather_icons: data.data[0].weather.icon,
           pres: data.data[0].pres,
-          wind_spd: data.data[0].wind_spd,
+          wind_spd: Math.floor(data.data[0].wind_spd),
           wind_cdir_full: data.data[0].wind_cdir_full,
           sunset: data.data[0].sunset,
           sunrise: data.data[0].sunrise,
