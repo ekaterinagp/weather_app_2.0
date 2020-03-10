@@ -170,22 +170,32 @@ export default class App extends React.Component {
         <this.Results />
 
         <div className="wrapper">
-          <Router>
+          <Router basename={"/weather-app-react"}>
             <div className="menuDiv">
               <nav>
                 <ul>
                   <li className="liMenu a">
-                    <NavLink exact to="/" activeClassName="selectedLink">
+                    <NavLink
+                      exact
+                      to={`${process.env.PUBLIC_URL}/`}
+                      activeClassName="selectedLink"
+                    >
                       <FaHome /> Home
                     </NavLink>
                   </li>
                   <li className="liMenu b">
-                    <NavLink to="/forecast" activeClassName="selectedLink">
+                    <NavLink
+                      to={`${process.env.PUBLIC_URL}/forecast`}
+                      activeClassName="selectedLink"
+                    >
                       <WiDaySnowWind /> Forecast
                     </NavLink>
                   </li>
                   <li className="liMenu c">
-                    <NavLink to="/weather-alert" activeClassName="selectedLink">
+                    <NavLink
+                      to={`${process.env.PUBLIC_URL}/weather-alert`}
+                      activeClassName="selectedLink"
+                    >
                       <GoAlert /> Weather alert
                     </NavLink>
                   </li>
@@ -194,16 +204,16 @@ export default class App extends React.Component {
             </div>
             <Switch>
               <Route
-                path="/forecast"
+                path={`${process.env.PUBLIC_URL}/forecast`}
                 component={state => <Forecast {...this.state} />}
               />
               <Route
-                path="/weather-alert"
+                path={`${process.env.PUBLIC_URL}/weather-alert`}
                 component={state => <WeatherAlert {...this.state} />}
               />
               <Route
                 exact
-                path="/"
+                path={`${process.env.PUBLIC_URL}/`}
                 component={props => (
                   <StartPage {...this.state} isLoading={this.state.isLoading} />
                 )}
