@@ -170,7 +170,7 @@ export default class App extends React.Component {
         <this.Results />
 
         <div className="wrapper">
-          <Router basename={"/weather-app-react"}>
+          <Router basename={"/"}>
             <div className="menuDiv">
               <nav>
                 <ul>
